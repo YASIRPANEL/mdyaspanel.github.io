@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FF Panel Pro - Free Fire Top-Up & Game Services</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Instant Free Fire top-ups, elite passes, and game services with secure payments and 24/7 support." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg-gradient: radial-gradient(circle at top left, #22c55e33, transparent 55%), radial-gradient(circle at bottom right, #6366f133, transparent 55%), #020617;
+    }
+
+    body {
+      background: var(--bg-gradient);
+    }
+
+    /* Glass card */
+    .glass {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.8),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+    }
+
+    /* Glow button */
+    .btn-gradient {
+      background: linear-gradient(135deg, #22c55e, #4ade80, #a7f3d0);
+      box-shadow: 0 12px 30px rgba(34, 197, 94, 0.45);
+    }
+
+    .btn-gradient:hover {
+      box-shadow: 0 18px 45px rgba(34, 197, 94, 0.65);
+      transform: translateY(-1px);
+    }
+
+    /* Soft gradient border */
+    .gradient-border {
+      position: relative;
+      border-radius: 1.5rem;
+      overflow: hidden;
+    }
+
+    .gradient-border::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.8), rgba(59, 130, 246, 0.8), rgba(34, 197, 94, 0.9));
+      z-index: -1;
+    }
+
+    .gradient-border-inner {
+      border-radius: 1.4rem;
+      background: radial-gradient(circle at top left, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.95));
+    }
+
+    /* Navbar blur */
+    .nav-blur {
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: linear-gradient(to bottom, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.88));
+      border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    }
+
+    /* Animated gradient text */
+    .animated-gradient-text {
+      background: linear-gradient(120deg, #22c55e, #38bdf8, #a855f7, #22c55e);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: gradientMove 10s ease infinite;
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Reveal on scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px) scale(0.99);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* FAQ */
+    .faq-item button[aria-expanded="true"] svg {
+      transform: rotate(180deg);
+    }
+
+    /* Mobile nav */
+    .mobile-menu-enter {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.98);
+    }
+
+    .mobile-menu-enter-active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+    }
+
+    .mobile-menu-leave {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .mobile-menu-leave-active {
+      opacity: 0;
+      transform: translateY(-8px) scale(0.98);
+      transition: opacity 0.14s ease-in, transform 0.14s ease-in;
+    }
+
+    /* Custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #020617;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #4b5563;
+    }
+  </style>
+</head>
+<body class="text-slate-100 antialiased">
+  <!-- Navbar -->
+  <header class="fixed inset-x-0 top-0 z-40">
+    <div class="nav-blur">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 lg:px-6">
+        <a href="#top" class="flex items-center gap-2">
+          <div class="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-tr from-emerald-500 via-sky-500 to-indigo-500 shadow-lg shadow-emerald-500/40">
+            <span class="text-lg font-black tracking-tight">FF</span>
+          </div>
+          <div class="leading-tight">
+            <div class="text-sm font-semibold tracking-wide text-slate-50">FF Panel Pro</div>
+            <div class="text-[11px] text-slate-400">Free Fire Top-Up Panel</div>
+          </div>
+        </a>
+
+        <nav class="hidden items-center gap-8 text-sm font-medium text-slate-200 md:flex">
+          <a href="#plans" class="hover:text-white/90">Plans</a>
+          <a href="#features" class="hover:text-white/90">Features</a>
+          <a href="#steps" class="hover:text-white/90">How it works</a>
+          <a href="#faq" class="hover:text-white/90">FAQ</a>
+          <a href="#contact" class="hover:text-white/90">Contact</a>
+        </nav>
+
+        <div class="hidden items-center gap-3 md:flex">
+          <button class="rounded-full border border-slate-600/70 px-4 py-1.5 text-xs font-medium text-slate-100 hover:border-slate-400/80 hover:bg-slate-900/50">
+            Login
+          </button>
+          <a href="#plans" class="btn-gradient rounded-full px-4 py-1.5 text-xs font-semibold text-slate-950">
+            Get Panel Access
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button id="mobileMenuBtn" class="inline-flex items-center justify-center rounded-full border border-slate-700 bg-slate-900/70 p-2 text-slate-200 md:hidden">
+          <svg id="menuIcon" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+          <svg id="closeIcon" xmlns="http://www.w3.org/2000/svg" class="hidden h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobileMenu" class="mx-auto hidden max-w-6xl px-4 pb-4 md:hidden">
+        <nav class="glass mt-1 rounded-2xl px-4 py-3 text-sm">
+          <a href="#plans" class="block rounded-xl px-2 py-2 text-slate-200 hover:bg-slate-800/70">Plans</a>
+          <a href="#features" class="mt-1 block rounded-xl px-2 py-2 text-slate-200 hover:bg-slate-800/70">Features</a>
+          <a href="#steps" class="mt-1 block rounded-xl px-2 py-2 text-slate-200 hover:bg-slate-800/70">How it works</a>
+          <a href="#faq" class="mt-1 block rounded-xl px-2 py-2 text-slate-200 hover:bg-slate-800/70">FAQ</a>
+          <a href="#contact" class="mt-1 block rounded-xl px-2 py-2 text-slate-200 hover:bg-slate-800/70">Contact</a>
+          <div class="mt-3 flex gap-3">
+            <button class="flex-1 rounded-full border border-slate-600/80 px-4 py-1.5 text-xs font-medium text-slate-100 hover:border-slate-400/80 hover:bg-slate-900/60">Login</button>
+            <a href="#plans" class="btn-gradient flex-1 rounded-full px-4 py-1.5 text-center text-xs font-semibold text-slate-950">Get Access</a>
+          </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main id="top" class="pt-20 md:pt-24 lg:pt-28">
+    <!-- Hero -->
+    <section class="relative overflow-hidden">
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute -left-20 top-0 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl"></div>
+        <div class="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-sky-500/10 blur-3xl"></div>
+      </div>
+
+      <div class="mx-auto flex max-w-6xl flex-col-reverse items-center gap-10 px-4 pb-16 pt-10 md:flex-row md:pb-20 md:pt-12 lg:gap-16 lg:px-6 lg:pb-24">
+        <div class="relative z-10 max-w-xl space-y-6 md:flex-1">
+          <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-emerald-300">
+            <span class="flex h-1.5 w-1.5 rounded-full bg-emerald-400 shadow-[0_0_0_4px_rgba(34,197,94,0.35)]"></span>
+            Live Top-Up Panel
+          </span>
+
+          <h1 class="text-balance text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl">
+            Power up your
+            <span class="animated-gradient-text">Free Fire</span>
+            account in seconds.
+          </h1>
+
+          <p class="text-pretty text-sm text-slate-300 sm:text-base">
+            Sell instant Free Fire diamonds, elite passes, and game services to your customers with a clean, fast, and secure panel. Fully automated, 24/7, with transparent pricing.
+          </p>
+
+          <div class="flex flex-wrap items-center gap-4">
+            <a href="#plans" class="btn-gradient inline-flex items-center justify-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-slate-950">
+              View Plans
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 5h6m0 0v6m0-6L10 14"/>
+              </svg>
+            </a>
+            <a href="#demo" class="inline-flex items-center justify-center gap-2 rounded-full border border-slate-600/80 bg-slate-900/70 px-5 py-2.5 text-sm font-medium text-slate-100 hover:border-slate-400/90 hover:bg-slate-900/90">
+              View Demo Panel
+            </a>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-6 pt-1">
+            <div class="flex items-center gap-3">
+              <div class="flex -space-x-2">
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-emerald-500/20 text-[10px] font-semibold text-emerald-200 ring-2 ring-slate-900">99+</span>
+                <span class="inline-flex h-7 w-7 items-center justify-center rounded-full bg-sky-500/20 text-[10px] font-semibold text-sky-200 ring-2 ring-slate-900">4.9★</span>
+              </div>
+              <div class="text-[11px] leading-tight text-slate-400">
+                Trusted by
+                <span class="font-semibold text-slate-200">1200+ resellers</span><br />
+                across 15+ countries.
+              </div>
+            </div>
+            <div class="flex items-center gap-2 text-[11px] text-slate-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+              </svg>
+              <span>Secure • No passwords required • Official payment gateways</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Card -->
+        <div class="relative z-10 w-full max-w-md md:flex-1">
+          <div class="gradient-border">
+            <div class="gradient-border-inner p-4">
+              <div class="glass relative overflow-hidden rounded-2xl p-4 sm:p-5">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <div class="text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-400">
+                      Live Panel Preview
+                    </div>
+                    <div class="mt-1 text-sm font-semibold text-slate-100">
+                      FF Reseller Panel
+                    </div>
+                  </div>
+                  <div class="rounded-full bg-emerald-500/10 px-3 py-1 text-[11px] font-medium text-emerald-300">
+                    Online
+                  </div>
+                </div>
+
+                <div class="mt-4 grid grid-cols-2 gap-3 text-[11px] sm:text-xs">
+                  <div class="rounded-xl bg-slate-900/60 p-3">
+                    <div class="flex items-center justify-between text-[10px] text-slate-400">
+                      <span>Balance</span>
+                      <span class="text-emerald-300">Instant update</span>
+                    </div>
+                    <div class="mt-1 text-lg font-semibold text-emerald-300">
+                      ₹12,480
+                    </div>
+                    <div class="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                      <div class="h-full w-2/3 rounded-full bg-gradient-to-r from-emerald-400 to-sky-400"></div>
+                    </div>
+                  </div>
+
+                  <div class="rounded-xl bg-slate-900/60 p-3">
+                    <div class="flex items-center justify-between text-[10px] text-slate-400">
+                      <span>Today’s Orders</span>
+                      <span class="text-emerald-300">Auto-complete</span>
+                    </div>
+                    <div class="mt-1 text-lg font-semibold text-slate-100">
+                      87
+                    </div>
+                    <div class="mt-2 flex items-center gap-1 text-[10px] text-emerald-300">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/>
+                      </svg>
+                      99.2% success rate
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-4 rounded-xl bg-slate-900/60 p-3">
+                  <div class="flex items-center justify-between text-[11px] text-slate-400">
+                    <span>Popular Service</span>
+                    <span>Average delivery: <span class="font-semibold text-emerald-300">18 sec</span></span>
+                  </div>
+                  <div class="mt-2 flex items-center justify-between">
+                    <div>
+                      <div class="flex items-center gap-1 text-xs font-semibold text-slate-100">
+                        310 Diamonds
+                        <span class="rounded-full bg-emerald-500/20 px-1.5 py-0.5 text-[9px] font-semibold text-emerald-200">Sale</span>
+                      </div>
+                      <div class="mt-1 text-[10px] text-slate-400">Free Fire ID only • No login</div>
+                    </div>
+                    <div class="text-right">
+                      <div class="text-[11px] text-slate-400 line-through">₹260</div>
+                      <div class="text-lg font-semibold text-emerald-300">₹215</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-3 flex flex-wrap items-center justify-between gap-3 text-[10px] text-slate-400">
+                  <div class="flex items-center gap-1">
+                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                    Auto detect region • UID only • API based delivery
+                  </div>
+                  <button class="inline-flex items-center gap-1 rounded-full bg-emerald-500/10 px-2.5 py-1 text-[10px] font-medium text-emerald-200">
+                    Start selling now
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h9.638L9.23 6.292a.75.75 0 111.06-1.06l5.5 5.5a.75.75 0 010 1.06l-5.5 5.5a.75.75 0 11-1.06-1.06l4.158-4.158H3.75A.75.75 0 013 10z" clip-rule="evenodd"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pointer-events-none absolute -left-6 top-4 h-20 w-20 rounded-full bg-emerald-500/25 blur-3xl sm:-left-10 sm:top-8"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust badges -->
+    <section class="mx-auto max-w-6xl px-4 pb-10 md:px-6 md:pb-14">
+      <div class="glass flex flex-wrap items-center justify-between gap-4 rounded-2xl px-4 py-4 text-[11px] text-slate-300 sm:text-xs">
+        <div class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5M21 12A9 9 0 116 4.5"/>
+          </svg>
+          <span><span class="font-semibold text-slate-100">Instant</span> delivery on supported servers</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6l3 3m6 0a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          <span><span class="font-semibold text-slate-100">24/7</span> automated panel uptime</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-violet-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          </svg>
+          <span><span class="font-semibold text-slate-100">No login</span> — UID only top-ups</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing / Plans -->
+    <section id="plans" class="relative">
+      <div class="mx-auto max-w-6xl px-4 pb-16 md:px-6 md:pb-20 lg:pb-24">
+        <div class="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
+          <div class="max-w-xl">
+            <h2 class="text-2xl font-semibold tracking-tight text-slate-50 sm:text-3xl">
+              Choose your panel plan.
+            </h2>
+            <p class="mt-2 text-sm text-slate-300 sm:text-base">
+              Start small and scale as your Free Fire business grows. All plans include real-time order status, balance control, and support.
+            </p>
+          </div>
+          <div class="flex items-center gap-2 text-xs text-slate-300">
+            <span class="rounded-full bg-emerald-500/10 px-2 py-1 font-semibold text-emerald-300">No setup fees</span>
+            <span class="rounded-full bg-slate-900/60 px-2 py-1">Cancel anytime</span>
+          </div>
+        </div>
+
+        <div class="mt-8 grid gap-5 md:grid-cols-3">
+          <!-- Starter -->
+          <div class="reveal glass flex flex-col rounded-2xl border border-slate-700/70 p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-semibold text-slate-50">Starter Seller</h3>
+              <span class="rounded-full bg-slate-900/70 px-2.5 py-0.5 text-[10px] text-slate-300">Best for new resellers</span>
+            </div>
+            <div class="mt-3 flex items-baseline gap-1">
+              <span class="text-2xl font-bold text-emerald-300">₹799</span>
+              <span class="text-xs text-slate-400">/month</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-300">Everything you need to start selling basic Free Fire top-ups.</p>
+            <ul class="mt-4 space-y-2 text-xs text-slate-300">
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                1 admin + 2 staff accounts
+              </li>
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                15+ diamond top-up packages
+              </li>
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                Order tracking & status page
+              </li>
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                Manual payment confirmation
+              </li>
+            </ul>
+            <button class="mt-5 w-full rounded-full border border-slate-600/80 px-4 py-2 text-sm font-semibold text-slate-100 hover:border-slate-400/80 hover:bg-slate-900/70">
+              Get Starter Panel
+            </button>
+          </div>
+
+          <!-- Pro -->
+          <div class="reveal glass relative flex flex-col rounded-2xl border border-emerald-500/60 p-5 shadow-[0_0_0_1px_rgba(16,185,129,0.3),0_20px_60px_rgba(16,185,129,0.28)]">
+            <div class="absolute right-4 top-4 rounded-full bg-gradient-to-r from-emerald-500 to-sky-500 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-slate-950">
+              Most Popular
+            </div>
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-semibold text-slate-50">Pro Reseller</h3>
+              <span class="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[10px] text-emerald-200">For growing stores</span>
+            </div>
+            <div class="mt-3 flex items-baseline gap-1">
+              <span class="text-2xl font-bold text-emerald-300">₹1,499</span>
+              <span class="text-xs text-slate-400">/month</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-300">Scale your Free Fire business with automation and better margins.</p>
+            <ul class="mt-4 space-y-2 text-xs text-slate-300">
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                3 admins + 5 staff accounts
+              </li>
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                30+ diamond & elite pass packages
+              </li>
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                Automated payment gateway integration
+              </li>
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                Custom branding & domain support
+              </li>
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                WhatsApp order notifications
+              </li>
+            </ul>
+            <button class="btn-gradient mt-5 w-full rounded-full px-4 py-2 text-sm font-semibold text-slate-950">
+              Get Pro Panel
+            </button>
+            <p class="mt-2 text-[11px] text-emerald-200/90">Average return on investment within 4–6 days for active resellers.</p>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="reveal glass flex flex-col rounded-2xl border border-slate-700/70 p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="text-sm font-semibold text-slate-50">Enterprise Network</h3>
+              <span class="rounded-full bg-slate-900/70 px-2.5 py-0.5 text-[10px] text-slate-300">High volume</span>
+            </div>
+            <div class="mt-3 flex items-baseline gap-1">
+              <span class="text-2xl font-bold text-emerald-300">Let’s talk</span>
+            </div>
+            <p class="mt-2 text-xs text-slate-300">For brands, gaming cafés, and large resellers handling thousands of orders per day.</p>
+            <ul class="mt-4 space-y-2 text-xs text-slate-300">
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                Unlimited staff accounts
+              </li>
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                Priority API routes for fastest delivery
+              </li>
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                Dedicated account manager
+              </li>
+              <li class="flex gap-2">
+                <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                </svg>
+                Custom integrations (CRMs, bots, etc.)
+              </li>
+            </ul>
+            <button class="mt-5 w-full rounded-full border border-emerald-500/70 px-4 py-2 text-sm font-semibold text-emerald-200 hover:bg-emerald-500/10">
+              Talk to our team
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="relative">
+      <div class="mx-auto max-w-6xl px-4 pb-16 md:px-6 md:pb-20">
+        <div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div class="max-w-xl">
+            <h2 class="text-2xl font-semibold tracking-tight text-slate-50 sm:text-3xl">
+              Built for serious Free Fire resellers.
+            </h2>
+            <p class="mt-2 text-sm text-slate-300 sm:text-base">
+              Your customers get instant, safe top-ups. You get a clean dashboard with full control, logs, and analytics.
+            </p>
+          </div>
+          <div class="flex gap-8 text-xs text-slate-300">
+            <div>
+              <div class="text-lg font-semibold text-emerald-300">99.9%</div>
+              Uptime
+            </div>
+            <div>
+              <div class="text-lg font-semibold text-emerald-300">18 sec</div>
+              Avg. delivery
+            </div>
+            <div>
+              <div class="text-lg font-semibold text-emerald-300">1.4M+</div>
+              Orders processed
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 grid gap-5 md:grid-cols-3">
+          <div class="reveal glass flex flex-col rounded-2xl border border-slate-700/70 p-4">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-500/15 text-emerald-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 3.75h15v16.5L12 15l-7.5 5.25z"/>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-sm font-semibold text-slate-100">Diamond & pass management</h3>
+            <p class="mt-2 text-xs text-slate-300">
+              Create your own diamond, weekly, monthly, and elite pass packages. Set your selling price and margins with one click.
+            </p>
+          </div>
+
+          <div class="reveal glass flex flex-col rounded-2xl border border-slate-700/70 p-4">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-500/15 text-sky-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-sm font-semibold text-slate-100">Safe, UID-only process</h3>
+            <p class="mt-2 text-xs text-slate-300">
+              Customers only share their Free Fire ID. No passwords, no risky data. Orders are processed via official payment channels.
+            </p>
+          </div>
+
+          <div class="reveal glass flex flex-col rounded-2xl border border-slate-700/70 p-4">
+            <div class="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-500/15 text-violet-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m-6 4h6m-6 4h3M4 5a2 2 0 012-2h12a2 2 0 012 2v8.5a2 2 0 01-.553 1.387l-3.914 4.258A2 2 0 0114.914 20H6a2 2 0 01-2-2V5z"/>
+              </svg>
+            </div>
+            <h3 class="mt-4 text-sm font-semibold text-slate-100">Smart order tracking</h3>
+            <p class="mt-2 text-xs text-slate-300">
+              Customers can check their order status by UID or ID. You get full logs with filters for completed, pending, and failed orders.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="steps" class="relative">
+      <div class="mx-auto max-w-6xl px-4 pb-16 md:px-6 md:pb-20">
+        <div class="max-w-xl">
+          <h2 class="text-2xl font-semibold tracking-tight text-slate-50 sm:text-3xl">
+            How your Free Fire panel works.
+          </h2>
+          <p class="mt-2 text-sm text-slate-300 sm:text-base">
+            Launch your panel in under 24 hours and give your players a smooth top-up experience.
+          </p>
+        </div>
+        <div class="mt-8 grid gap-5 md:grid-cols-3">
+          <div class="reveal glass flex flex-col rounded-2xl border border-slate-700/70 p-4">
+            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+              <span class="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/15 text-emerald-300">1</span>
+              Setup
+            </div>
+            <h3 class="mt-3 text-sm font-semibold text-slate-100">Connect your payment & region</h3>
+            <p class="mt-2 text-xs text-slate-300">
+              Choose your currency, region, and payment methods like UPI, bank, or wallet. We configure your panel with your logo and colors.
+            </p>
+          </div>
+
+          <div class="reveal glass flex flex-col rounded-2xl border border-slate-700/70 p-4">
+            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+              <span class="flex h-6 w-6 items-center justify-center rounded-full bg-sky-500/15 text-sky-300">2</span>
+              Launch
+            </div>
+            <h3 class="mt-3 text-sm font-semibold text-slate-100">Share the panel with players</h3>
+            <p class="mt-2 text-xs text-slate-300">
+              Players open your panel, enter their Free Fire UID, choose a package, and pay. No registration required for customers.
+            </p>
+          </div>
+
+          <div class="reveal glass flex flex-col rounded-2xl border border-slate-700/70 p-4">
+            <div class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+              <span class="flex h-6 w-6 items-center justify-center rounded-full bg-violet-500/15 text-violet-300">3</span>
+              Grow
+            </div>
+            <h3 class="mt-3 text-sm font-semibold text-slate-100">Watch orders auto-complete</h3>
+            <p class="mt-2 text-xs text-slate-300">
+              Orders are processed automatically. You focus on marketing and customer support while the panel runs 24/7 in the background.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Demo Panel -->
+    <section id="demo" class="relative">
+      <div class="mx-auto max-w-6xl px-4 pb-16 md:px-6 md:pb-20">
+        <div class="glass rounded-2xl border border-slate-700/70 p-4 md:p-6">
+          <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h2 class="text-lg font-semibold text-slate-50 sm:text-xl">
+                Try the customer side of your panel.
+              </h2>
+              <p class="mt-1 text-xs text-slate-300 sm:text-sm">
+                This is what your players see when they buy Free Fire diamonds, passes, or bundles from you.
+              </p>
+            </div>
+            <button class="btn-gradient inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-xs font-semibold text-slate-950">
+              Open Live Demo
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M5.75 4A1.75 1.75 0 004 5.75v8.5C4 15.992 4.757 16.75 5.75 16.75h8.5A1.75 1.75 0 0016 14.25v-5.5a.75.75 0 00-1.5 0v5.5a.25.25 0 01-.25.25h-8.5a.25.25 0 01-.25-.25v-8.5A.25.25 0 015.75 5h5.5a.75.75 0 000-1.5h-5.5z"/>
+                <path d="M16 4.75A.75.75 0 0015.25 4h-3.5a.75.75 0 000 1.5h1.69l-4.72 4.72a.75.75 0 101.06 1.06l4.72-4.72v1.69a.75.75 0 001.5 0v-3.5z"/>
+              </svg>
+            </button>
+          </div>
+
+          <div class="mt-4 grid gap-4 md:grid-cols-[1.7fr,1.3fr]">
+            <!-- Demo form -->
+            <div class="reveal rounded-2xl bg-slate-950/60 p-4">
+              <div class="flex items-center justify-between text-[11px] text-slate-300">
+                <div class="flex items-center gap-2">
+                  <span class="flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.7)]"></span>
+                  Test Panel
+                </div>
+                <span class="rounded-full bg-slate-900 px-2 py-0.5 text-[10px] text-slate-400">No real orders are created</span>
+              </div>
+
+              <form class="mt-3 space-y-3 text-xs">
+                <div>
+                  <label class="mb-1 block text-[11px] font-medium text-slate-200">Free Fire UID</label>
+                  <input type="text" placeholder="Enter your game UID (e.g. 123456789)" class="w-full rounded-xl border border-slate-700 bg-slate-950/90 px-3 py-2 text-xs text-slate-100 outline-none placeholder:text-slate-500 focus:border-emerald-500" />
+                </div>
+                <div>
+                  <label class="mb-1 block text-[11px] font-medium text-slate-200">Server / Region</label>
+                  <select class="w-full rounded-xl border border-slate-700 bg-slate-950/90 px-3 py-2 text-xs text-slate-100 outline-none focus:border-emerald-500">
+                    <option>India (FF-IN)</option>
+                    <option>Indonesia (FF-ID)</option>
+                    <option>Bangladesh (FF-BD)</option>
+                    <option>Brazil (FF-BR)</option>
+                    <option>Global / Others</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="mb-1 block text-[11px] font-medium text-slate-200">Select package</label>
+                  <div class="grid grid-cols-2 gap-2 text-[11px]">
+                    <button type="button" class="flex flex-col rounded-xl border border-emerald-500/50 bg-emerald-500/5 p-2 text-left text-emerald-100">
+                      <span class="text-xs font-semibold">100 Diamonds</span>
+                      <span class="text-[10px] text-emerald-200">₹85</span>
+                    </button>
+                    <button type="button" class="flex flex-col rounded-xl border border-slate-700 bg-slate-900/80 p-2 text-left">
+                      <span class="text-xs font-semibold text-slate-100">310 Diamonds</span>
+                      <span class="text-[10px] text-slate-400">₹215</span>
+                    </button>
+                    <button type="button" class="flex flex-col rounded-xl border border-slate-700 bg-slate-900/80 p-2 text-left">
+                      <span class="text-xs font-semibold text-slate-100">Weekly Membership</span>
+                      <span class="text-[10px] text-slate-400">₹159</span>
+                    </button>
+                    <button type="button" class="flex flex-col rounded-xl border border-slate-700 bg-slate-900/80 p-2 text-left">
+                      <span class="text-xs font-semibold text-slate-100">Elite Pass</span>
+                      <span class="text-[10px] text-slate-400">₹499</span>
+                    </button>
+                  </div>
+                </div>
+                <div>
+                  <label class="mb-1 block text-[11px] font-medium text-slate-200">Payment method</label>
+                  <div class="flex flex-wrap gap-2 text-[11px]">
+                    <span class="rounded-full bg-slate-900/90 px-3 py-1 text-slate-200">UPI</span>
+                    <span class="rounded-full bg-slate-900/90 px-3 py-1 text-slate-200">Bank Transfer</span>
+                    <span class="rounded-full bg-slate-900/90 px-3 py-1 text-slate-200">Wallet</span>
+                    <span class="rounded-full bg-slate-900/90 px-3 py-1 text-slate-200">Card</span>
+                  </div>
+                </div>
+                <button type="button" class="btn-gradient flex w-full items-center justify-center gap-1 rounded-full px-4 py-2 text-xs font-semibold text-slate-950">
+                  Place Demo Order
+                </button>
+              </form>
+            </div>
+
+            <!-- Side card -->
+            <div class="reveal flex flex-col justify-between rounded-2xl bg-slate-950/70 p-4">
+              <div>
+                <h3 class="text-sm font-semibold text-slate-50">Everything branded as your store.</h3>
+                <p class="mt-1 text-xs text-slate-300">
+                  Add your own logo, colors, and custom domain. No developer required — we set everything up for you.
+                </p>
+                <ul class="mt-3 space-y-1.5 text-xs text-slate-300">
+                  <li class="flex gap-2">
+                    <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                    </svg>
+                    Works on mobile, tablet, and PC
+                  </li>
+                  <li class="flex gap-2">
+                    <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                    </svg>
+                    Multilingual support on request
+                  </li>
+                  <li class="flex gap-2">
+                    <svg class="mt-0.5 h-3.5 w-3.5 text-emerald-400" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M16.704 5.29a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L3.296 8.5a.75.75 0 011.06-1.06l4.028 4.027 6.72-6.72a.75.75 0 011.06 0z" clip-rule="evenodd"/>
+                    </svg>
+                    Custom pages: About, T&C, Refund policy
+                  </li>
+                </ul>
+              </div>
+              <div class="mt-4 border-t border-slate-800 pt-3 text-[11px] text-slate-400">
+                FF Panel Pro is not affiliated with or endorsed by Garena International. All game assets belong to their respective owners. We only provide secure top-up & panel software.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="relative">
+      <div class="mx-auto max-w-6xl px-4 pb-16 md:px-6 md:pb-20">
+        <div class="max-w-xl">
+          <h2 class="text-2xl font-semibold tracking-tight text-slate-50 sm:text-3xl">
+            Frequently asked questions.
+          </h2>
+          <p class="mt-2 text-sm text-slate-300 sm:text-base">
+            Answers to some common questions from Free Fire panel owners.
+          </p>
+        </div>
+
+        <div class="mt-6 grid gap-6 md:grid-cols-[1.4fr,1.6fr]">
+          <div class="glass rounded-2xl border border-slate-700/70 p-4">
+            <h3 class="text-sm font-semibold text-slate-100">Is it safe for my players?</h3>
+            <p class="mt-2 text-xs text-slate-300">
+              Yes. Your customers only share their in-game UID and choose a package. We do not collect passwords or sensitive account data. Top-ups are processed through official payment channels.
+            </p>
+            <h3 class="mt-4 text-sm font-semibold text-slate-100">Which payment methods are supported?</h3>
+            <p class="mt-2 text-xs text-slate-300">
+              We support UPI, bank transfer, major wallets, and card gateways depending on your country. You decide which methods to enable and you receive all payments directly.
+            </p>
+          </div>
+
+          <div class="space-y-2">
+            <div class="faq-item glass rounded-xl border border-slate-700/70">
+              <button class="flex w-full items-center justify-between px-3 py-2 text-left text-xs font-medium text-slate-100" aria-expanded="false">
+                <span>How fast can I get my Free Fire panel?</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.293l3.71-4.06a.75.75 0 011.08 1.04l-4.25 4.65a.75.75 0 01-1.08 0l-4.25-4.65a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+              <div class="hidden border-t border-slate-800 px-3 pb-3 pt-2 text-[11px] text-slate-300">
+                After we confirm your payment and details (logo, name, preferred domain), basic panels are usually live within 12–24 business hours. Enterprise setups may take a bit longer.
+              </div>
+            </div>
+
+            <div class="faq-item glass rounded-xl border border-slate-700/70">
+              <button class="flex w-full items-center justify-between px-3 py-2 text-left text-xs font-medium text-slate-100" aria-expanded="false">
+                <span>Can I change my prices & profit?</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.293l3.71-4.06a.75.75 0 011.08 1.04l-4.25 4.65a.75.75 0 01-1.08 0l-4.25-4.65a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+              <div class="hidden border-t border-slate-800 px-3 pb-3 pt-2 text-[11px] text-slate-300">
+                Yes. You control the selling price for each package. The panel shows you your cost and your profit, so you can adjust prices based on offers or competition.
+              </div>
+            </div>
+
+            <div class="faq-item glass rounded-xl border border-slate-700/70">
+              <button class="flex w-full items-center justify-between px-3 py-2 text-left text-xs font-medium text-slate-100" aria-expanded="false">
+                <span>Do you offer support if something breaks?</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400 transition-transform" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.293l3.71-4.06a.75.75 0 011.08 1.04l-4.25 4.65a.75.75 0 01-1.08 0l-4.25-4.65a.75.75 0 01.02-1.06z" clip-rule="evenodd"/>
+                </svg>
+              </button>
+              <div class="hidden border-t border-slate-800 px-3 pb-3 pt-2 text-[11px] text-slate-300">
+                Yes. All plans include technical support for the panel software and order processing issues. Enterprise clients also get priority response time and a dedicated manager.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="relative">
+      <div class="mx-auto max-w-6xl px-4 pb-16 md:px-6 md:pb-20">
+        <div class="glass grid gap-6 rounded-2xl border border-slate-700/70 p-5 md:grid-cols-[1.3fr,1.7fr] md:p-6">
+          <div>
+            <h2 class="text-xl font-semibold text-slate-50 sm:text-2xl">Ready to launch your Free Fire panel?</h2>
+            <p class="mt-2 text-sm text-slate-300">
+              Share your details and our team will contact you with a live demo, pricing in your currency, and next steps.
+            </p>
+            <div class="mt-4 space-y-2 text-xs text-slate-300">
+              <div class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15A2.25 2.25 0 012.25 17.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.5a2.25 2.25 0 01-2.31 0l-7.5-4.5a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                </svg>
+                <span>Official emails from <span class="font-semibold text-slate-100">support@ffpanelpro.com</span></span>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8.5 4.5H6.75A2.25 2.25 0 004.5 6.75v10.5A2.25 2.25 0 006.75 19.5h10.5a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0017.25 4.5H15.5m-7 6.75L12 6.75m0 0l3.5 4.5M12 6.75v12"/>
+                </svg>
+                <span>Get a link to our latest live demo panel</span>
+              </div>
+            </div>
+          </div>
+
+          <form id="contactForm" class="reveal space-y-3 text-xs">
+            <div class="grid gap-3 md:grid-cols-2">
+              <div>
+                <label class="mb-1 block text-[11px] font-medium text-slate-200">Full name</label>
+                <input type="text" required placeholder="Your name" class="w-full rounded-xl border border-slate-700 bg-slate-950/90 px-3 py-2 text-xs text-slate-100 outline-none placeholder:text-slate-500 focus:border-emerald-500" />
+              </div>
+              <div>
+                <label class="mb-1 block text-[11px] font-medium text-slate-200">WhatsApp / Telegram</label>
+                <input type="text" required placeholder="+91 98765 43210" class="w-full rounded-xl border border-slate-700 bg-slate-950/90 px-3 py-2 text-xs text-slate-100 outline-none placeholder:text-slate-500 focus:border-emerald-500" />
+              </div>
+            </div>
+            <div>
+              <label class="mb-1 block text-[11px] font-medium text-slate-200">Email address</label>
+              <input type="email" required placeholder="you@example.com" class="w-full rounded-xl border border-slate-700 bg-slate-950/90 px-3 py-2 text-xs text-slate-100 outline-none placeholder:text-slate-500 focus:border-emerald-500" />
+            </div>
+            <div>
+              <label class="mb-1 block text-[11px] font-medium text-slate-200">Monthly order target</label>
+              <select class="w-full rounded-xl border border-slate-700 bg-slate-950/90 px-3 py-2 text-xs text-slate-100 outline-none focus:border-emerald-500">
+                <option>Up to 300 orders / month</option>
+                <option>300 — 1,000 orders / month</option>
+                <option>1,000 — 5,000 orders / month</option>
+                <option>5,000+ orders / month</option>
+              </select>
+            </div>
+            <div>
+              <label class="mb-1 block text-[11px] font-medium text-slate-200">Tell us about your business</label>
+              <textarea rows="3" placeholder="Share details about your audience, current selling method, and preferred launch date." class="w-full rounded-xl border border-slate-700 bg-slate-950/90 px-3 py-2 text-xs text-slate-100 outline-none placeholder:text-slate-500 focus:border-emerald-500"></textarea>
+            </div>
+            <div class="flex items-start gap-2 text-[10px] text-slate-400">
+              <input id="terms" type="checkbox" class="mt-0.5 rounded border-slate-700 bg-slate-950 text-emerald-500 focus:ring-emerald-500" required />
+              <label for="terms">
+                I understand that FF Panel Pro is a software service and does not sell in-game accounts or offer any cheats. I agree to follow the game’s terms of service and local laws.
+              </label>
+            </div>
+            <button type="submit" class="btn-gradient flex w-full items-center justify-center gap-1 rounded-full px-4 py-2 text-xs font-semibold text-slate-950">
+              Request panel demo
+            </button>
+            <p id="formMessage" class="hidden text-[11px] text-emerald-300">
+              Thanks! We’ve recorded your details. Our team will reach out within 24 business hours.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800/80 bg-slate-950/90">
+    <div class="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-5 text-[11px] text-slate-400 md:flex-row md:items-center md:justify-between md:px-6">
+      <div class="flex items-center gap-2">
+        <div class="flex h-7 w-7 items-center justify-center rounded-xl bg-gradient-to-tr from-emerald-500 via-sky-500 to-indigo-500 text-[10px] font-black text-slate-950">
+          FF
+        </div>
+        <div class="leading-tight">
+          <div class="text-[11px] font-semibold text-slate-100">FF Panel Pro</div>
+          <div class="text-[10px] text-slate-500">© <span id="year"></span> All rights reserved.</div>
+        </div>
+      </div>
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="#top" class="hover:text-slate-200">Back to top</a>
+        <span class="h-3 w-px bg-slate-700"></span>
+        <span class="text-[10px]">Not affiliated with or endorsed by Garena International.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuIcon = document.getElementById('menuIcon');
+    const closeIcon = document.getElementById('closeIcon');
+
+    if (mobileMenuBtn) {
+      let menuOpen = false;
+      mobileMenuBtn.addEventListener('click', () => {
+        menuOpen = !menuOpen;
+        if (menuOpen) {
+          mobileMenu.classList.remove('hidden', 'mobile-menu-leave', 'mobile-menu-leave-active');
+          mobileMenu.classList.add('mobile-menu-enter');
+          requestAnimationFrame(() => {
+            mobileMenu.classList.add('mobile-menu-enter-active');
+          });
+        } else {
+          mobileMenu.classList.remove('mobile-menu-enter', 'mobile-menu-enter-active');
+          mobileMenu.classList.add('mobile-menu-leave');
+          requestAnimationFrame(() => {
+            mobileMenu.classList.add('mobile-menu-leave-active');
+          });
+          setTimeout(() => {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('mobile-menu-leave', 'mobile-menu-leave-active');
+          }, 180);
+        }
+        menuIcon.classList.toggle('hidden', menuOpen);
+        closeIcon.classList.toggle('hidden', !menuOpen);
+      });
+    }
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href').substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+          e.preventDefault();
+          window.scrollTo({
+            top: target.offsetTop - 72,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Reveal on scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('show');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.18 }
+      );
+      revealElements.forEach(el => observer.observe(el));
+    } else {
+      revealElements.forEach(el => el.classList.add('show'));
+    }
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-item button').forEach(button => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        const content = button.nextElementSibling;
+        if (!content) return;
+        content.classList.toggle('hidden', expanded);
+      });
+    });
+
+    // Contact form (demo only)
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    if (contactForm) {
+      contactForm.addEventListener('submit', e => {
+        e.preventDefault();
+        contactForm.reset();
+        if (formMessage) {
+          formMessage.classList.remove('hidden');
+        }
+      });
+    }
+
+    // Year
+    const yearSpan = document.getElementById('year');
+    if (yearSpan) {
+      yearSpan.textContent = new Date().getFullYear();
+    }
+  </script>
+</body>
+</html>
